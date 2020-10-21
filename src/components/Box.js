@@ -32,7 +32,7 @@ const Box = (props) => {
       color={props.color}
       onClick={() => props.onDelete(id, props.blockArr, props.score)}
     >
-      {/* <h1>{id}</h1> */}
+      <h4>{id}</h4>
     </StyledBox>
   );
 };

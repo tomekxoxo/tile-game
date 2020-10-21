@@ -24,7 +24,13 @@ const reducer = (state = initialState, action) => {
     case actionTypes.UPDATE_SCORE:
       return {
         ...state,
-        score: action.score
+        score: action.score,
+      };
+    case actionTypes.MOVE_BLOCKS_DOWN:
+      return {
+        ...state,
+        blockArr: action.arr,
+        move: action.move,
       };
     default:
       return state;

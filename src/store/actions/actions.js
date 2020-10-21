@@ -13,12 +13,45 @@ export const populateBoard = (rows, cols) => {
 };
 
 export const moveBlocksDown = (arr) => {
-  console.log('baja');
-}
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i].color == "transparent") {
+      if (arr[i - 12] != undefined && arr[i - 12].color !== "transparent") {
+        const tempColor = arr[i - 12].color;
+        arr[i - 12].color = "transparent";
+        arr[i].color = tempColor;
+      } else if (
+        arr[i - 12 * 2] != undefined &&
+        arr[i - 12 * 2].color !== "transparent"
+      ) {
+        const tempColor = arr[i - 12 * 2].color;
+        arr[i - 12 * 2].color = "transparent";
+        arr[i].color = tempColor;
+      } else if (
+        arr[i - 12 * 3] != undefined &&
+        arr[i - 12 * 3].color !== "transparent"
+      ) {
+        const tempColor = arr[i - 12 * 3].color;
+        arr[i - 12 * 3].color = "transparent";
+        arr[i].color = tempColor;
+      } else if (
+        arr[i - 12 * 4] != undefined &&
+        arr[i - 12 * 4].color !== "transparent"
+      ) {
+        const tempColor = arr[i - 12 * 4].color;
+        arr[i - 12 * 4].color = "transparent";
+        arr[i].color = tempColor;
+      }
+    }
+  }
+  return {
+    type: actionTypes.MOVE_BLOCKS_DOWN,
+    arr: arr,
+    move: Math.floor(Math.random()),
+  };
+};
 
 export const deleteBox = (id, arr, score) => {
   const initialColor = arr[id].color;
-  moveBlocksDown()
   const checkForNeighbours = (array, stack) => {
     if (stack.length > 0) {
       // console.log("uruchomienie rekurencji");
@@ -99,12 +132,12 @@ export const deleteBox = (id, arr, score) => {
 };
 
 export const updateScore = (arr) => {
-  let score = 0
+  let score = 0;
 
-  arr.forEach(element => {
-    if (element.color == 'transparent') {
-      score += 1
+  arr.forEach((element) => {
+    if (element.color == "transparent") {
+      score += 1;
     }
-  })
+  });
   return { type: actionTypes.UPDATE_SCORE, score: score };
-}
+};

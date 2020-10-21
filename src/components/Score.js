@@ -14,7 +14,11 @@ const Score = (props) => {
 
   useEffect(() => {
     props.onUpdateScore(props.arr)
-  },[props.update])
+  }, [props.update])
+  
+  useEffect(() => {
+    props.onMoveBlocksDown(props.arr)
+  },[props.score])
 
 
   return (
@@ -36,6 +40,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdateScore: (arr) => {
       dispatch(actions.updateScore(arr));
+    },
+    onMoveBlocksDown: (arr) => {
+      dispatch(actions.moveBlocksDown(arr));
     },
   };
 };
