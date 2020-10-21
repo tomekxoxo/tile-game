@@ -7,13 +7,16 @@ const StyledBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color:#FFF;
   width: 50px;
   height: 50px;
   background-color: ${(props) => props.color && props.color};
   cursor: pointer;
   &:hover {
-    transform: scale(1.04);
+    transform: scale(1.08);
+  }
+  @media screen and (max-width: 768px) {
+    width: 25px;
+    height: 25px;
   }
 `;
 

@@ -7,7 +7,7 @@ import Score from "./Score";
 
 const StyledBoard = styled.div`
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 2px;
   grid-template-columns: repeat(
     ${(props) => (props.cols ? props.cols : null)},
     1fr

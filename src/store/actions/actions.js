@@ -3,7 +3,7 @@ import * as actionTypes from "./actionTypes";
 export const populateBoard = (rows, cols) => {
   const qt = rows * cols;
   let res = [];
-  const colors = ["green", "yellow", "red", "black", "blue"];
+  const colors = ["#9e5613", "#133d8a", "#72caed", "#f7c95c", "#705496"];
 
   for (let i = 0; i < qt; i++) {
     const randColor = Math.floor(Math.random() * 5);
@@ -12,9 +12,13 @@ export const populateBoard = (rows, cols) => {
   return { type: actionTypes.POPULATE_BOARD, arr: res };
 };
 
+export const moveBlocksDown = (arr) => {
+  console.log('baja');
+}
+
 export const deleteBox = (id, arr, score) => {
   const initialColor = arr[id].color;
-
+  moveBlocksDown()
   const checkForNeighbours = (array, stack) => {
     if (stack.length > 0) {
       // console.log("uruchomienie rekurencji");
@@ -23,6 +27,7 @@ export const deleteBox = (id, arr, score) => {
       let newStack = stack;
       let newArray = array;
       let checked = false;
+
       if (
         array[currElementId - 12] !== undefined &&
         array[currElementId - 12].color == initialColor
@@ -77,6 +82,7 @@ export const deleteBox = (id, arr, score) => {
         newArray[currElementId + 1].color = "transparent";
         checked = true;
       }
+
       if (checked) {
         newStack.shift();
         return checkForNeighbours(newArray, newStack);

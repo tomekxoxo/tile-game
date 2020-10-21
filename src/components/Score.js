@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 const StyledScore = styled.div`
   p{
-    color:#fff;
+    color:#000;
     font-size:2.2rem;
   }
 `
