@@ -23,6 +23,8 @@ const Board = (props) => {
     props.onPopulateBoard(props.rows, props.cols);
   }, []);
 
+
+
   let blocks;
 
   blocks = props.blockarr.map((element) => {

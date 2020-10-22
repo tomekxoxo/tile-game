@@ -25,8 +25,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         score: action.score,
+        move: action.move,
       };
     case actionTypes.MOVE_BLOCKS_DOWN:
+      return {
+        ...state,
+        blockArr: action.arr,
+        move: action.move,
+      };
+    case actionTypes.GENERATE_NEW_BLOCKS:
       return {
         ...state,
         blockArr: action.arr,

@@ -2,5 +2,6 @@ export {
   populateBoard,
   deleteBox,
   updateScore,
-  moveBlocksDown
+  moveBlocksDown,
+  generateNewBlocks
 } from './actions'

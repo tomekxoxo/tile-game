@@ -27,12 +27,19 @@ const Box = (props) => {
     setId(props.id);
   }, []);
 
+  const clickHandler = () => {
+    props.onDelete(id, props.blockArr);
+    props.onUpdateScore(props.blockArr, props.score);
+    props.onMoveBlocksDown(props.blockArr);
+    props.onGenerateNewBlocks(props.blockArr);
+    
+  }
+  
   return (
     <StyledBox
       color={props.color}
-      onClick={() => props.onDelete(id, props.blockArr, props.score)}
+      onClick={clickHandler}
     >
-      <h4>{id}</h4>
     </StyledBox>
   );
 };
@@ -50,6 +57,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onDelete: (id, arr, score) => {
       dispatch(actions.deleteBox(id, arr, score));
+    },
+    onUpdateScore: (arr, prevScore) => {
+      dispatch(actions.updateScore(arr, prevScore));
+    },
+    onMoveBlocksDown: (arr) => {
+      dispatch(actions.moveBlocksDown(arr));
+    },
+    onGenerateNewBlocks: (arr) => {
+      dispatch(actions.generateNewBlocks(arr));
     },
   };
 };

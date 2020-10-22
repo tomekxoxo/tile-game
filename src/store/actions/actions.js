@@ -1,3 +1,4 @@
+import { getElementError } from "@testing-library/react";
 import * as actionTypes from "./actionTypes";
 
 export const populateBoard = (rows, cols) => {
@@ -50,13 +51,11 @@ export const moveBlocksDown = (arr) => {
   };
 };
 
-export const deleteBox = (id, arr, score) => {
+export const deleteBox = (id, arr) => {
   const initialColor = arr[id].color;
   const checkForNeighbours = (array, stack) => {
     if (stack.length > 0) {
-      // console.log("uruchomienie rekurencji");
-      // console.log(initialColor);
-      const currElementId = stack[0]; //  first element from stack
+      const currElementId = stack[0];
       let newStack = stack;
       let newArray = array;
       let checked = false;
@@ -65,7 +64,6 @@ export const deleteBox = (id, arr, score) => {
         array[currElementId - 12] !== undefined &&
         array[currElementId - 12].color == initialColor
       ) {
-        //upper element
         newStack.push(currElementId - 12);
 
         newArray[currElementId].color = "transparent";
@@ -76,8 +74,6 @@ export const deleteBox = (id, arr, score) => {
         array[currElementId + 12] !== undefined &&
         array[currElementId + 12].color == initialColor
       ) {
-        //lower element
-
         newStack.push(currElementId + 12);
 
         newArray[currElementId].color = "transparent";
@@ -92,7 +88,6 @@ export const deleteBox = (id, arr, score) => {
         array[currElementId - 1].id !== 47 &&
         array[currElementId - 1].color == initialColor
       ) {
-        //element from left
         newStack.push(currElementId - 1);
 
         newArray[currElementId].color = "transparent";
@@ -107,10 +102,7 @@ export const deleteBox = (id, arr, score) => {
         array[currElementId + 1].id !== 48 &&
         array[currElementId + 1].color == initialColor
       ) {
-        //element from right
-
         newStack.push(currElementId + 1);
-
         newArray[currElementId].color = "transparent";
         newArray[currElementId + 1].color = "transparent";
         checked = true;
@@ -126,18 +118,40 @@ export const deleteBox = (id, arr, score) => {
       return array;
     }
   };
-  const x = checkForNeighbours(arr, [id], score);
+  const x = checkForNeighbours(arr, [id]);
 
   return { type: actionTypes.BOX_DELETE, arr: x, move: id };
 };
 
-export const updateScore = (arr) => {
-  let score = 0;
+export const generateNewBlocks = (arr) => {
+  const colors = ["#9e5613", "#133d8a", "#72caed", "#f7c95c", "#705496"];
+
+  arr.forEach((element) => {
+    if (element.color == "transparent") {
+      const randColor = Math.floor(Math.random() * 5);
+      element.color = colors[randColor];
+    }
+  });
+
+  return {
+    type: actionTypes.GENERATE_NEW_BLOCKS,
+    arr: arr,
+    move: Math.floor(Math.random()),
+  };
+};
+
+export const updateScore = (arr, prevScore) => {
+  let score = prevScore;
 
   arr.forEach((element) => {
     if (element.color == "transparent") {
       score += 1;
     }
   });
-  return { type: actionTypes.UPDATE_SCORE, score: score };
+
+  return {
+    type: actionTypes.UPDATE_SCORE,
+    score: score,
+    move: Math.floor(Math.random()),
+  };
 };
