@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Box from "./Box";
 import * as actions from "../store/actions/index";
 import Score from "./Score";
+import Modal from "./Modal";
 
 const StyledBoard = styled.div`
   display: grid;
@@ -13,11 +14,24 @@ const StyledBoard = styled.div`
 `;
 
 const Board = (props) => {
-  const { onPopulateBoard, rows, cols, blockarr } = props;
+  const {
+    onPopulateBoard,
+    onCheckIfCanMove,
+    rows,
+    cols,
+    blockarr,
+    move,
+  } = props;
 
   useEffect(() => {
     onPopulateBoard(rows, cols);
   }, []);
+
+  useEffect(() => {
+    if (blockarr.length > 0) {
+      onCheckIfCanMove(blockarr);
+    }
+  }, [blockarr]);
 
   let blocks;
 
@@ -31,6 +45,8 @@ const Board = (props) => {
         {blocks}
       </StyledBoard>
       <Score />
+      {/* {move ? null : <Modal />} */}
+      <Modal/>
     </React.Fragment>
   );
 };
@@ -48,6 +64,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onPopulateBoard: (rows, cols) => {
       dispatch(actions.populateBoard(rows, cols));
+    },
+    onCheckIfCanMove: (arr) => {
+      dispatch(actions.checkIfCanMove(arr));
     },
   };
 };

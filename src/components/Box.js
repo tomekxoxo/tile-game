@@ -26,10 +26,10 @@ const Box = (props) => {
     onUpdateScore,
     onMoveBlocksDown,
     onGenerateNewBlocks,
+    onCheckIfCanMove,
     blockArr,
     score,
     cols,
-    rows,
   } = props;
 
   const [id, setId] = useState(null);
@@ -41,16 +41,16 @@ const Box = (props) => {
   const clickHandler = () => {
     onDelete(id, blockArr);
     onUpdateScore(blockArr, score);
-    onMoveBlocksDown(blockArr);
+    onMoveBlocksDown(blockArr, cols);
     onGenerateNewBlocks(blockArr);
+    onCheckIfCanMove(blockArr);
   };
 
-  return <StyledBox color={props.color} onClick={clickHandler}></StyledBox>;
+  return <StyledBox color={props.color} onClick={clickHandler}><h4>{id}</h4></StyledBox>;
 };
 
 const mapStateToProps = (state) => {
   return {
-    rows: state.rows,
     cols: state.cols,
     blockArr: state.blockArr,
     score: state.score,
@@ -65,11 +65,14 @@ const mapDispatchToProps = (dispatch) => {
     onUpdateScore: (arr, prevScore) => {
       dispatch(actions.updateScore(arr, prevScore));
     },
-    onMoveBlocksDown: (arr) => {
-      dispatch(actions.moveBlocksDown(arr));
+    onMoveBlocksDown: (arr, cols) => {
+      dispatch(actions.moveBlocksDown(arr, cols));
     },
     onGenerateNewBlocks: (arr) => {
       dispatch(actions.generateNewBlocks(arr));
+    },
+    onCheckIfCanMove: (arr) => {
+      dispatch(actions.checkIfCanMove(arr));
     },
   };
 };

@@ -3,5 +3,6 @@ export {
   deleteBox,
   updateScore,
   moveBlocksDown,
-  generateNewBlocks
+  generateNewBlocks,
+  checkIfCanMove
 } from './actions'

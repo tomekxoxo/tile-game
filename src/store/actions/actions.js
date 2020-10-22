@@ -12,33 +12,33 @@ export const populateBoard = (rows, cols) => {
   return { type: actionTypes.POPULATE_BOARD, arr: res };
 };
 
-export const moveBlocksDown = (arr) => {
+export const moveBlocksDown = (arr, cols) => {
   for (let i = arr.length - 1; i >= 0; i--) {
     if (arr[i].color == "transparent") {
-      if (arr[i - 12] != undefined && arr[i - 12].color !== "transparent") {
-        const tempColor = arr[i - 12].color;
-        arr[i - 12].color = "transparent";
+      if (arr[i - cols] != undefined && arr[i - cols].color !== "transparent") {
+        const tempColor = arr[i - cols].color;
+        arr[i - cols].color = "transparent";
         arr[i].color = tempColor;
       } else if (
-        arr[i - 12 * 2] != undefined &&
-        arr[i - 12 * 2].color !== "transparent"
+        arr[i - cols * 2] != undefined &&
+        arr[i - cols * 2].color !== "transparent"
       ) {
-        const tempColor = arr[i - 12 * 2].color;
-        arr[i - 12 * 2].color = "transparent";
+        const tempColor = arr[i - cols * 2].color;
+        arr[i - cols * 2].color = "transparent";
         arr[i].color = tempColor;
       } else if (
-        arr[i - 12 * 3] != undefined &&
-        arr[i - 12 * 3].color !== "transparent"
+        arr[i - cols * 3] != undefined &&
+        arr[i - cols * 3].color !== "transparent"
       ) {
-        const tempColor = arr[i - 12 * 3].color;
-        arr[i - 12 * 3].color = "transparent";
+        const tempColor = arr[i - cols * 3].color;
+        arr[i - cols * 3].color = "transparent";
         arr[i].color = tempColor;
       } else if (
-        arr[i - 12 * 4] != undefined &&
-        arr[i - 12 * 4].color !== "transparent"
+        arr[i - cols * 4] != undefined &&
+        arr[i - cols * 4].color !== "transparent"
       ) {
-        const tempColor = arr[i - 12 * 4].color;
-        arr[i - 12 * 4].color = "transparent";
+        const tempColor = arr[i - cols * 4].color;
+        arr[i - cols * 4].color = "transparent";
         arr[i].color = tempColor;
       }
     }
@@ -64,7 +64,6 @@ export const deleteBox = (id, arr) => {
         array[currElementId - 12].color == initialColor
       ) {
         newStack.push(currElementId - 12);
-
         newArray[currElementId].color = "transparent";
         newArray[currElementId - 12].color = "transparent";
         checked = true;
@@ -74,7 +73,6 @@ export const deleteBox = (id, arr) => {
         array[currElementId + 12].color == initialColor
       ) {
         newStack.push(currElementId + 12);
-
         newArray[currElementId].color = "transparent";
         newArray[currElementId + 12].color = "transparent";
         checked = true;
@@ -152,5 +150,48 @@ export const updateScore = (arr, prevScore) => {
     type: actionTypes.UPDATE_SCORE,
     score: score,
     move: Math.floor(Math.random()),
+  };
+};
+
+export const checkIfCanMove = (arr) => {
+  let canMove;
+  for (let i = 0; i <= arr.length - 1; i++) {
+    if (arr[i].color === arr[i + 1].color && arr[i + 1].id <= arr.length - 1) {
+      if (
+        arr[i].id != 11 &&
+        arr[i].id != 23 &&
+        arr[i].id != 35 &&
+        arr[i].id != 47
+      ) {
+        canMove = true;
+        return {
+          type: actionTypes.CHECK_IF_CAN_MOVE,
+          move: canMove,
+        };
+      }
+    }
+    if (
+      arr[i].color === arr[i + 12].color &&
+      arr[i + 12].id <= arr.length - 1
+    ) {
+      canMove = true;
+      if (
+        arr[i].id != 12 &&
+        arr[i].id != 24 &&
+        arr[i].id != 36 &&
+        arr[i].id != 48
+      ) {
+        canMove = true;
+        return {
+          type: actionTypes.CHECK_IF_CAN_MOVE,
+          move: canMove,
+        };
+      }
+    }
+  }
+  canMove = false;
+  return {
+    type: actionTypes.CHECK_IF_CAN_MOVE,
+    move: canMove,
   };
 };

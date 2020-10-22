@@ -39,6 +39,11 @@ const reducer = (state = initialState, action) => {
         blockArr: action.arr,
         move: action.move,
       };
+    case actionTypes.CHECK_IF_CAN_MOVE:
+      return {
+        ...state,
+        move: action.move,
+      };
     default:
       return state;
   }
