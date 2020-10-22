@@ -8,30 +8,26 @@ import Score from "./Score";
 const StyledBoard = styled.div`
   display: grid;
   grid-gap: 2px;
-  grid-template-columns: repeat(
-    ${(props) => (props.cols ? props.cols : null)},
-    1fr
-  );
-  grid-template-rows: repeat(
-    ${(props) => (props.rows ? props.rows : null)},
-    1fr
-  );
+  grid-template-columns: repeat(${(props) => props.cols && props.cols}, 1fr);
+  grid-template-rows: repeat(${(props) => props.rows && props.rows}, 1fr);
 `;
 
 const Board = (props) => {
+  const { onPopulateBoard, rows, cols, blockarr } = props;
+
   useEffect(() => {
-    props.onPopulateBoard(props.rows, props.cols);
+    onPopulateBoard(rows, cols);
   }, []);
 
   let blocks;
 
-  blocks = props.blockarr.map((element) => {
+  blocks = blockarr.map((element) => {
     return <Box key={element.id} id={element.id} color={element.color} />;
   });
 
   return (
     <React.Fragment>
-      <StyledBoard rows={props.rows} cols={props.cols}>
+      <StyledBoard rows={rows} cols={cols}>
         {blocks}
       </StyledBoard>
       <Score />

@@ -21,6 +21,17 @@ const StyledBox = styled.div`
 `;
 
 const Box = (props) => {
+  const {
+    onDelete,
+    onUpdateScore,
+    onMoveBlocksDown,
+    onGenerateNewBlocks,
+    blockArr,
+    score,
+    cols,
+    rows,
+  } = props;
+
   const [id, setId] = useState(null);
 
   useEffect(() => {
@@ -28,20 +39,13 @@ const Box = (props) => {
   }, []);
 
   const clickHandler = () => {
-    props.onDelete(id, props.blockArr);
-    props.onUpdateScore(props.blockArr, props.score);
-    props.onMoveBlocksDown(props.blockArr);
-    props.onGenerateNewBlocks(props.blockArr);
-    
-  }
-  
-  return (
-    <StyledBox
-      color={props.color}
-      onClick={clickHandler}
-    >
-    </StyledBox>
-  );
+    onDelete(id, blockArr);
+    onUpdateScore(blockArr, score);
+    onMoveBlocksDown(blockArr);
+    onGenerateNewBlocks(blockArr);
+  };
+
+  return <StyledBox color={props.color} onClick={clickHandler}></StyledBox>;
 };
 
 const mapStateToProps = (state) => {
