@@ -1,6 +1,6 @@
 {
   "homepage": "http://tomekxoxo.github.io/tile-game",
-  "name": "rekrutacja-gra",
+  "name": "tile-game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

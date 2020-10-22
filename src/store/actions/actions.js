@@ -1,4 +1,3 @@
-import { getElementError } from "@testing-library/react";
 import * as actionTypes from "./actionTypes";
 
 export const populateBoard = (rows, cols) => {
