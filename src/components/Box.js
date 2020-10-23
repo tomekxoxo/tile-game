@@ -30,7 +30,6 @@ const Box = (props) => {
     blockArr,
     score,
     cols,
-    move,
   } = props;
 
   const [id, setId] = useState(null);

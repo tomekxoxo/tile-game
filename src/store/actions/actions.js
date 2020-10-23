@@ -11,7 +11,6 @@ const colors = [
   "blue",
   "yellow",
   "grey",
-  "black",
   "white",
   "pink",
   "orange",
@@ -23,7 +22,7 @@ export const populateBoard = (rows, cols) => {
   let res = [];
 
   for (let i = 0; i < qt; i++) {
-    const randColor = Math.floor(Math.random() * 15);
+    const randColor = Math.floor(Math.random() * colors.length);
     res.push({ id: i, color: colors[randColor] });
   }
   return { type: actionTypes.POPULATE_BOARD, arr: res };
@@ -31,27 +30,27 @@ export const populateBoard = (rows, cols) => {
 
 export const moveBlocksDown = (arr, cols) => {
   for (let i = arr.length - 1; i >= 0; i--) {
-    if (arr[i].color == "transparent") {
-      if (arr[i - cols] != undefined && arr[i - cols].color !== "transparent") {
+    if (arr[i].color === "transparent") {
+      if (arr[i - cols] !== undefined && arr[i - cols].color !== "transparent") {
         const tempColor = arr[i - cols].color;
         arr[i - cols].color = "transparent";
         arr[i].color = tempColor;
       } else if (
-        arr[i - cols * 2] != undefined &&
+        arr[i - cols * 2] !== undefined &&
         arr[i - cols * 2].color !== "transparent"
       ) {
         const tempColor = arr[i - cols * 2].color;
         arr[i - cols * 2].color = "transparent";
         arr[i].color = tempColor;
       } else if (
-        arr[i - cols * 3] != undefined &&
+        arr[i - cols * 3] !== undefined &&
         arr[i - cols * 3].color !== "transparent"
       ) {
         const tempColor = arr[i - cols * 3].color;
         arr[i - cols * 3].color = "transparent";
         arr[i].color = tempColor;
       } else if (
-        arr[i - cols * 4] != undefined &&
+        arr[i - cols * 4] !== undefined &&
         arr[i - cols * 4].color !== "transparent"
       ) {
         const tempColor = arr[i - cols * 4].color;
@@ -78,7 +77,7 @@ export const deleteBox = (id, arr) => {
 
       if (
         array[currElementId - 12] !== undefined &&
-        array[currElementId - 12].color == initialColor
+        array[currElementId - 12].color === initialColor
       ) {
         newStack.push(currElementId - 12);
         newArray[currElementId].color = "transparent";
@@ -87,7 +86,7 @@ export const deleteBox = (id, arr) => {
       }
       if (
         array[currElementId + 12] !== undefined &&
-        array[currElementId + 12].color == initialColor
+        array[currElementId + 12].color === initialColor
       ) {
         newStack.push(currElementId + 12);
         newArray[currElementId].color = "transparent";
@@ -100,7 +99,7 @@ export const deleteBox = (id, arr) => {
         array[currElementId - 1].id !== 23 &&
         array[currElementId - 1].id !== 35 &&
         array[currElementId - 1].id !== 47 &&
-        array[currElementId - 1].color == initialColor
+        array[currElementId - 1].color === initialColor
       ) {
         newStack.push(currElementId - 1);
 
@@ -114,7 +113,7 @@ export const deleteBox = (id, arr) => {
         array[currElementId + 1].id !== 24 &&
         array[currElementId + 1].id !== 36 &&
         array[currElementId + 1].id !== 48 &&
-        array[currElementId + 1].color == initialColor
+        array[currElementId + 1].color === initialColor
       ) {
         newStack.push(currElementId + 1);
         newArray[currElementId].color = "transparent";
@@ -139,8 +138,8 @@ export const deleteBox = (id, arr) => {
 
 export const generateNewBlocks = (arr) => {
   arr.forEach((element) => {
-    if (element.color == "transparent") {
-      const randColor = Math.floor(Math.random() * 15);
+    if (element.color === "transparent") {
+      const randColor = Math.floor(Math.random() * colors.length);
       element.color = colors[randColor];
     }
   });
@@ -156,7 +155,7 @@ export const updateScore = (arr, prevScore) => {
   let score = prevScore;
 
   arr.forEach((element) => {
-    if (element.color == "transparent") {
+    if (element.color === "transparent") {
       score += 1;
     }
   });
@@ -171,15 +170,15 @@ export const updateScore = (arr, prevScore) => {
 export const checkIfCanMove = (arr) => {
   let canMove;
   for (let i = 0; i <= arr.length - 1; i++) {
-    if (i >= 12 && arr[i].color == arr[i - 12].color) {
+    if (i >= 12 && arr[i].color === arr[i - 12].color) {
       canMove = true;
       return {
         type: actionTypes.CHECK_IF_CAN_MOVE,
         move: canMove,
       };
     }
-    if (i >= 1 && arr[i].color == arr[i - 1].color) {
-      if (i != 12 && i != 24 && i != 36 && i != 48) {
+    if (i >= 1 && arr[i].color === arr[i - 1].color) {
+      if (i !== 12 && i !== 24 && i !== 36 && i !== 48) {
         canMove = true;
         return {
           type: actionTypes.CHECK_IF_CAN_MOVE,
