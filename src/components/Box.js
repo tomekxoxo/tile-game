@@ -30,6 +30,7 @@ const Box = (props) => {
     blockArr,
     score,
     cols,
+    move,
   } = props;
 
   const [id, setId] = useState(null);
@@ -46,7 +47,7 @@ const Box = (props) => {
     onCheckIfCanMove(blockArr);
   };
 
-  return <StyledBox color={props.color} onClick={clickHandler}><h4>{id}</h4></StyledBox>;
+  return <StyledBox color={props.color} onClick={clickHandler}></StyledBox>;
 };
 
 const mapStateToProps = (state) => {
@@ -54,6 +55,7 @@ const mapStateToProps = (state) => {
     cols: state.cols,
     blockArr: state.blockArr,
     score: state.score,
+    move: state.move,
   };
 };
 

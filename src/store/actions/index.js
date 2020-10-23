@@ -4,5 +4,6 @@ export {
   updateScore,
   moveBlocksDown,
   generateNewBlocks,
-  checkIfCanMove
-} from './actions'
+  checkIfCanMove,
+  restartGame,
+} from "./actions";

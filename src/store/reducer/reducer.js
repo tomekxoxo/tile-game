@@ -44,6 +44,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         move: action.move,
       };
+    case actionTypes.RESTART_GAME:
+      return {
+        ...state,
+        blockArr: [],
+        move: null,
+        score: 0,
+      };
     default:
       return state;
   }

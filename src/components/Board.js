@@ -33,6 +33,12 @@ const Board = (props) => {
     }
   }, [blockarr]);
 
+  const showModal = () => {
+    if (move === false) {
+      return <Modal />;
+    }
+  };
+
   let blocks;
 
   blocks = blockarr.map((element) => {
@@ -45,8 +51,7 @@ const Board = (props) => {
         {blocks}
       </StyledBoard>
       <Score />
-      {/* {move ? null : <Modal />} */}
-      <Modal/>
+      {showModal()}
     </React.Fragment>
   );
 };

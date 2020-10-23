@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Backdrop from "./Backdrop";
 import { connect } from "react-redux";
+import * as actions from "../store/actions/index";
 
 const StyledModal = styled.div`
   border-radius: 5px;
@@ -13,24 +14,25 @@ const StyledModal = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 100;
-  button{
-    border:none;
-    background-color:transparent;
-    padding:.5rem;
-    cursor:pointer;
-    &:hover{
-      transform:rotate(360deg);
-      transition: transform ease-in-out .4s;
+  button {
+    border: none;
+    background-color: transparent;
+    padding: 0.5rem;
+    cursor: pointer;
+    &:hover {
+      transform: rotate(360deg);
+      transition: transform ease-in-out 0.4s;
     }
   }
 `;
 
 const Modal = (props) => {
-  const { score } = props;
+  const { onPopulateBoard, onRestartGame, score, rows, cols } = props;
 
-  const reloadHandler = () => {
-    window.location.reload(true);
-  }
+  const restartGame = () => {
+    onRestartGame();
+    onPopulateBoard(rows, cols);
+  };
 
   return (
     <React.Fragment>
@@ -38,7 +40,7 @@ const Modal = (props) => {
       <StyledModal>
         <h1>Game Over</h1>
         <p>Your score: {score}</p>
-        <button onClick={reloadHandler}>
+        <button onClick={restartGame}>
           <i className="fas fa-sync-alt"></i>
         </button>
       </StyledModal>
@@ -49,7 +51,20 @@ const Modal = (props) => {
 const mapStateToProps = (state) => {
   return {
     score: state.score,
+    rows: state.rows,
+    cols: state.cols,
   };
 };
 
-export default connect(mapStateToProps, null)(Modal);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onPopulateBoard: (rows, cols) => {
+      dispatch(actions.populateBoard(rows, cols));
+    },
+    onRestartGame: () => {
+      dispatch(actions.restartGame());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

@@ -1,12 +1,29 @@
 import * as actionTypes from "./actionTypes";
 
+const colors = [
+  "#9e5613",
+  "#133d8a",
+  "#72caed",
+  "#f7c95c",
+  "#705496",
+  "red",
+  "green",
+  "blue",
+  "yellow",
+  "grey",
+  "black",
+  "white",
+  "pink",
+  "orange",
+  "purple",
+];
+
 export const populateBoard = (rows, cols) => {
   const qt = rows * cols;
   let res = [];
-  const colors = ["#9e5613", "#133d8a", "#72caed", "#f7c95c", "#705496"];
 
   for (let i = 0; i < qt; i++) {
-    const randColor = Math.floor(Math.random() * 5);
+    const randColor = Math.floor(Math.random() * 15);
     res.push({ id: i, color: colors[randColor] });
   }
   return { type: actionTypes.POPULATE_BOARD, arr: res };
@@ -121,11 +138,9 @@ export const deleteBox = (id, arr) => {
 };
 
 export const generateNewBlocks = (arr) => {
-  const colors = ["#9e5613", "#133d8a", "#72caed", "#f7c95c", "#705496"];
-
   arr.forEach((element) => {
     if (element.color == "transparent") {
-      const randColor = Math.floor(Math.random() * 5);
+      const randColor = Math.floor(Math.random() * 15);
       element.color = colors[randColor];
     }
   });
@@ -156,31 +171,15 @@ export const updateScore = (arr, prevScore) => {
 export const checkIfCanMove = (arr) => {
   let canMove;
   for (let i = 0; i <= arr.length - 1; i++) {
-    if (arr[i].color === arr[i + 1].color && arr[i + 1].id <= arr.length - 1) {
-      if (
-        arr[i].id != 11 &&
-        arr[i].id != 23 &&
-        arr[i].id != 35 &&
-        arr[i].id != 47
-      ) {
-        canMove = true;
-        return {
-          type: actionTypes.CHECK_IF_CAN_MOVE,
-          move: canMove,
-        };
-      }
-    }
-    if (
-      arr[i].color === arr[i + 12].color &&
-      arr[i + 12].id <= arr.length - 1
-    ) {
+    if (i >= 12 && arr[i].color == arr[i - 12].color) {
       canMove = true;
-      if (
-        arr[i].id != 12 &&
-        arr[i].id != 24 &&
-        arr[i].id != 36 &&
-        arr[i].id != 48
-      ) {
+      return {
+        type: actionTypes.CHECK_IF_CAN_MOVE,
+        move: canMove,
+      };
+    }
+    if (i >= 1 && arr[i].color == arr[i - 1].color) {
+      if (i != 12 && i != 24 && i != 36 && i != 48) {
         canMove = true;
         return {
           type: actionTypes.CHECK_IF_CAN_MOVE,
@@ -194,4 +193,8 @@ export const checkIfCanMove = (arr) => {
     type: actionTypes.CHECK_IF_CAN_MOVE,
     move: canMove,
   };
+};
+
+export const restartGame = () => {
+  return { type: actionTypes.RESTART_GAME };
 };
