@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/tile-game/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/tile-game/static/js/main.d2b5d05f.chunk.js",
-    "main.js.map": "/tile-game/static/js/main.d2b5d05f.chunk.js.map",
+    "main.js": "/tile-game/static/js/main.ff345a75.chunk.js",
+    "main.js.map": "/tile-game/static/js/main.ff345a75.chunk.js.map",
     "runtime-main.js": "/tile-game/static/js/runtime-main.5a2fdd89.js",
     "runtime-main.js.map": "/tile-game/static/js/runtime-main.5a2fdd89.js.map",
-    "static/js/2.a6dd2222.chunk.js": "/tile-game/static/js/2.a6dd2222.chunk.js",
-    "static/js/2.a6dd2222.chunk.js.map": "/tile-game/static/js/2.a6dd2222.chunk.js.map",
+    "static/js/2.4e3dcf1e.chunk.js": "/tile-game/static/js/2.4e3dcf1e.chunk.js",
+    "static/js/2.4e3dcf1e.chunk.js.map": "/tile-game/static/js/2.4e3dcf1e.chunk.js.map",
     "index.html": "/tile-game/index.html",
-    "precache-manifest.c7d6550db0e26a58e6cb96dd1c94d765.js": "/tile-game/precache-manifest.c7d6550db0e26a58e6cb96dd1c94d765.js",
+    "precache-manifest.1b4407a6213d8f2898b9aa38d85cb706.js": "/tile-game/precache-manifest.1b4407a6213d8f2898b9aa38d85cb706.js",
     "service-worker.js": "/tile-game/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/tile-game/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.a6dd2222.chunk.js.LICENSE.txt": "/tile-game/static/js/2.a6dd2222.chunk.js.LICENSE.txt"
+    "static/js/2.4e3dcf1e.chunk.js.LICENSE.txt": "/tile-game/static/js/2.4e3dcf1e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5a2fdd89.js",
-    "static/js/2.a6dd2222.chunk.js",
+    "static/js/2.4e3dcf1e.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.d2b5d05f.chunk.js"
+    "static/js/main.ff345a75.chunk.js"
   ]
 }
