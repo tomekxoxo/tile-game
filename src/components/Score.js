@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
 
 const StyledScore = styled.div`
   p {
@@ -16,11 +15,4 @@ const Score = (props) => {
     </StyledScore>
   );
 };
-
-const mapStateToProps = (state) => {
-  return {
-    score: state.score,
-  };
-};
-
-export default connect(mapStateToProps, null)(Score);
+export default Score;

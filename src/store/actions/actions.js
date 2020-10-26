@@ -6,12 +6,8 @@ const colors = [
   "#72caed",
   "#f7c95c",
   "#705496",
-  "red",
-  "green",
-  "blue",
   "yellow",
   "grey",
-  "white",
   "pink",
   "orange",
   "purple",
@@ -31,7 +27,10 @@ export const populateBoard = (rows, cols) => {
 export const moveBlocksDown = (arr, cols) => {
   for (let i = arr.length - 1; i >= 0; i--) {
     if (arr[i].color === "transparent") {
-      if (arr[i - cols] !== undefined && arr[i - cols].color !== "transparent") {
+      if (
+        arr[i - cols] !== undefined &&
+        arr[i - cols].color !== "transparent"
+      ) {
         const tempColor = arr[i - cols].color;
         arr[i - cols].color = "transparent";
         arr[i].color = tempColor;

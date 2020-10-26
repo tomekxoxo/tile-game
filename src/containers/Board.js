@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import Box from "./Box";
 import * as actions from "../store/actions/index";
-import Score from "./Score";
+import Score from "../components/Score";
 import Modal from "./Modal";
 
 const StyledBoard = styled.div`
@@ -21,6 +21,7 @@ const Board = (props) => {
     cols,
     blockarr,
     move,
+    score
   } = props;
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const Board = (props) => {
       <StyledBoard rows={rows} cols={cols}>
         {blocks}
       </StyledBoard>
-      <Score />
+      <Score score={score}/>
       {showModal()}
     </React.Fragment>
   );
@@ -62,6 +63,7 @@ const mapStateToProps = (state) => {
     cols: state.cols,
     blockarr: state.blockArr,
     move: state.move,
+    score: state.score,
   };
 };
 

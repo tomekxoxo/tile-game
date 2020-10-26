@@ -1,5 +1,5 @@
 import React from 'react';
-import Board from './components/Board';
+import Board from './containers/Board';
 import styled from "styled-components";
 
 const StyledApp = styled.div`
