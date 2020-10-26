@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/tile-game/precache-manifest.b691881f48b6e27f1dba234f7089c634.js"
+  "/tile-game/precache-manifest.fd1442c37f879dba9ec7213d29c68e07.js"
 );
 
 self.addEventListener('message', (event) => {

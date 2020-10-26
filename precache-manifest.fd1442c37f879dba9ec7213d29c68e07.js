@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "28fc4044a176dd49b28b28f56f959f8f",
+    "revision": "298dafbc0185983a510b8f0cd89c9c19",
     "url": "/tile-game/index.html"
   },
   {
-    "revision": "b4d3ec527c6bd959acf4",
-    "url": "/tile-game/static/css/main.5ecd60fb.chunk.css"
+    "revision": "8148556d9ecfc134c523",
+    "url": "/tile-game/static/css/main.6694319a.chunk.css"
   },
   {
     "revision": "e29e7c9954c6c89a37ff",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tile-game/static/js/2.4e3dcf1e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b4d3ec527c6bd959acf4",
-    "url": "/tile-game/static/js/main.d43ce790.chunk.js"
+    "revision": "8148556d9ecfc134c523",
+    "url": "/tile-game/static/js/main.719f09e0.chunk.js"
   },
   {
     "revision": "d0fd5835d1e0aec02145",
